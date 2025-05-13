@@ -2,13 +2,12 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private int money;
+    private int money = 1500;
     private ArrayList<Property> properties = new ArrayList<Property>();
-    private int position;
+    private int position = 0;
 
     public Player(String name) {
         this.name = name;
-        this.money = 0;
     }
 
     public void rollDice() {

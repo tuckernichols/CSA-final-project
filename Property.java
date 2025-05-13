@@ -1,7 +1,7 @@
 public class Property {
     private String name;
     private String buyPrice;
-    private boolean isavailable;
+    private boolean isavailable = true;
 
     public Property(String name, String buyPrice, boolean isavailable) {
         this.name = name;
@@ -25,7 +25,7 @@ public class Property {
     public String toString() {
         return "Property{" +
                 "name='" + name + '\'' +
-                ", value='" + buyPrice + '\'' +
                 '}';
     }
 }
+

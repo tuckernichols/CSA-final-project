@@ -2,13 +2,15 @@ public class main{
     public static void main(String[] args) {
         boolean gameRunning = true;
         // Create a new player
-         Player player = new Player("Tucker Nichols");
+        Player player = new Player("Tucker Nichols");
         Board board = new Board();
 
         while(gameRunning){
             for(int i = 0; i < 2; i++) {
                 player.rollDice();
                 System.out.println(player.getName() + " rolled the dice and moved to position: " + player.getPosition());
+                
+                // Get the current property based on the player's position
                 Property currentProperty = board.getProperty(player.getPosition());
                 System.out.println("Current Property: " + currentProperty);
                 
