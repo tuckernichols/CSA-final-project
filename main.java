@@ -12,6 +12,11 @@ public class main{
 
         while(gameRunning){
             for(int i = 0; i < 2; i++) {
+                System.out.println(player.getName() + "`s turn.");      // pre roll data
+                String answer = scanner.nextLine();
+                player.printPrerollData(answer);
+                System.out.println("");
+               
                 player.rollDice();
                 System.out.println(player.getName() + " rolled the dice and moved to position: " + player.getPosition());
                 
@@ -24,7 +29,7 @@ public class main{
                     System.out.println(currentProperty);
                     if(currentProperty.isAvailable()){
                         System.out.println("Do you want to buy it? (yes/no)");
-                        String answer = scanner.nextLine();
+                        answer = scanner.nextLine();
                         if(answer.equalsIgnoreCase("yes")){
                             player.buyProperty(currentProperty);
                         } else {

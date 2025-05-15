@@ -35,6 +35,20 @@ public class Player {
     public int getMoney() {
         return money;
     }
+    public void printPrerollData(String data) {
+        if(data.contains("properties")){
+            System.out.println("Properties: ");
+            for (Property property : properties) {
+                System.out.println(property.getName());
+            }
+        } else if(data.contains("money")){
+            System.out.println("Money: " + money);
+        } else if(data.contains("position")){
+            System.out.println("Position: " + position);
+        } else {
+            System.out.println("Invalid data requested.");
+        }
+    }
 
     public void buyProperty(Property property) {
         if (property.isAvailable()) {
