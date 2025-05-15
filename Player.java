@@ -36,6 +36,32 @@ public class Player {
         return money;
     }
 
+    public void buyProperty(Property property) {
+        if (property.isAvailable()) {
+            this.money -= property.getValue();
+            property.setOwner(this);
+            property.setAvailable(false);
+            properties.add(property);
+            System.out.println(name + " bought " + property.getName());
+            System.out.println("Remaining money: " + this.money);
+        } else {
+            System.out.println(property.getName() + " is not available for purchase.");
+        }
+    }
+
+    public void transact(int amount) {
+        this.money += amount;
+    }
+    public void addProperty(Property property) {
+        properties.add(property);
+    }
+    public ArrayList<Property> getProperties() {
+        return properties;
+    }  
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public void addScore(int points) {
         this.money += points;
     }

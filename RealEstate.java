@@ -1,10 +1,13 @@
+import java.util.Scanner;
+
 public class RealEstate extends Property {
     private Player owner;
     private int[] rent;
     private int morgageValue;
     int houseCount = 0;
+    Scanner scanner = new Scanner(System.in);
     
-    public RealEstate(String name, String buyPrice, int[] rent, int morgageValue) {
+    public RealEstate(String name, int buyPrice, int[] rent, int morgageValue) {
         super(name, buyPrice, true);
         this.rent = rent;
         this.morgageValue = morgageValue;
@@ -14,13 +17,8 @@ public class RealEstate extends Property {
         return rent[houseCount];
     }
 
-    public Player getOwner() {
-        return owner;
-    }
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
+    
+    
     public void addHouse() {
         if (houseCount < 5) {
             houseCount++;
@@ -29,15 +27,14 @@ public class RealEstate extends Property {
         }
     }
 
-//  board[1] = new RealEstate("Mediterranean Avenue", "60", new int[]{2, 10, 30, 90, 160, 250}, 30);    
 
     @Override
     public String toString() {
         if(isAvailable()) {
             return "RealEstate {" +
-                    "name='" + getName() + '\'' +
-                    "for sale'" + '\'' +
-                    ", value='" + getValue() + '\'' +
+                    "FOR SALE'" + '\'' +
+                    "Name='" + getName() + '\'' +
+                    ", Price='" + getValue() + '\'' +
                     '}';
         }
         else {
