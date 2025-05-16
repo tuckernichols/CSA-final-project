@@ -5,7 +5,6 @@ public class RealEstate extends Property {
     private int[] rent;
     private int morgageValue;
     int houseCount = 0;
-    Scanner scanner = new Scanner(System.in);
     
     public RealEstate(String name, int buyPrice, int[] rent, int morgageValue) {
         super(name, buyPrice, true);

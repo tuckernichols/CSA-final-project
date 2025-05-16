@@ -11,13 +11,14 @@ public class main{
         
 
         while(gameRunning){
-            for(int i = 0; i < 2; i++) {
+            for(int i = 0; i < 1; i++) {
                 System.out.println(player.getName() + "`s turn.");      // pre roll data
+                System.out.println("Do you want to see your properties, money, or position? (properties/money/position)");
                 String answer = scanner.nextLine();
                 player.printPrerollData(answer);
                 System.out.println("");
                
-                player.rollDice();
+                int roll = player.rollDice();
                 System.out.println(player.getName() + " rolled the dice and moved to position: " + player.getPosition());
                 
                 // Get the current property based on the player's position
@@ -35,14 +36,55 @@ public class main{
                         } else {
                             System.out.println("You chose not to buy the property.");
                         }
-                    } else {
+                    } else if(currentProperty.getOwner() != player) {
                         System.out.println("This property is owned by " + currentRealEstate.getOwner().getName());
                         System.out.println("Rent paid: " + currentRealEstate.getRent());
-                        player.transact(-currentRealEstate.getRent());
+                        player.pay(currentRealEstate.getRent(), currentProperty.getOwner());
                     }
-                } else{
-                    System.out.println("This property is not a real estate.");
+
+                } else if(currentProperty instanceof RailRoad) {                // if railroad
+                    RailRoad currentRailRoad = (RailRoad) currentProperty;
+                    System.out.println(currentProperty);
+                    if(currentProperty.isAvailable()){
+                        System.out.println("Do you want to buy it? (yes/no)");
+                        answer = scanner.nextLine();
+                        if(answer.equalsIgnoreCase("yes")){
+                            player.buyProperty(currentProperty);
+                        } else {
+                            System.out.println("You chose not to buy the property.");
+                        }
+                    } else if(currentProperty.getOwner() != player) {
+                        System.out.println("This property is owned by " + currentRailRoad.getOwner().getName());
+                        System.out.println("Rent paid: " + currentRailRoad.getRent());
+                        player.pay(currentRailRoad.getRent(), currentRailRoad.getOwner());
+                    }
+
+                } else if(currentProperty instanceof Utility){              // if utility
+                    Utility currentUtility = (Utility) currentProperty;
+                    System.out.println(currentProperty);
+                    if(currentProperty.isAvailable()){
+                        System.out.println("Do you want to buy it? (yes/no)");
+                        answer = scanner.nextLine();
+                        if(answer.equalsIgnoreCase("yes")){
+                            player.buyProperty(currentProperty);
+                        } else {
+                            System.out.println("You chose not to buy the property.");
+                        }
+                    } else if(currentProperty.getOwner() != player) {
+                        System.out.println("This property is owned by " + currentUtility.getOwner().getName());
+                        System.out.println("Rent paid: " + currentUtility.getRent(roll));
+                        player.pay(currentUtility.getRent(roll), currentUtility.getOwner());
+                    }
+
+                } else if(currentProperty instanceof Tax) {                // if tax
+                    Tax currentTax = (Tax) currentProperty;
+                    System.out.println(currentProperty);
+                    System.out.println("You have to pay " + currentTax.getTaxAmount() + " in taxes.");
+                    player.transact(( - currentTax.getTaxAmount()));
+                } else {
+                    System.out.println("This property is not available for purchase.");
                 }
+            
 
                 System.out.println("- - - - - - - - - - - -");
 

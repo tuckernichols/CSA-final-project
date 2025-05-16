@@ -10,11 +10,11 @@ public class Player {
         this.name = name;
     }
 
-    public void rollDice() {
+    public int rollDice() {
         int die1 = (int) (Math.random() * 6) + 1;
         int die2 = (int) (Math.random() * 6) + 1;
         int total = die1 + die2;
-
+    
         // Move the player
         position += total;
 
@@ -23,6 +23,7 @@ public class Player {
             position -= 40; // Assuming the board has 40 spaces
             addScore(200); // Collect $200 for passing "Go"
         }
+        return total;  // return for if landed on utility
     }
     public int getPosition() {
         return position;
@@ -65,6 +66,12 @@ public class Player {
 
     public void transact(int amount) {
         this.money += amount;
+    }
+
+    
+    public void pay(int amount, Player otherPlayer) {
+        this.money -= amount;
+        otherPlayer.money += amount;
     }
     public void addProperty(Property property) {
         properties.add(property);
