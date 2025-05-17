@@ -32,6 +32,8 @@ public class Property {
     public void setOwner(Player owner) {
         this.owner = owner;
     }
+    
+    
 
     @Override
     public String toString() {

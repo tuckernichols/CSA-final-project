@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class RealEstate extends Property {
     private Player owner;
     private int[] rent;
@@ -17,10 +15,10 @@ public class RealEstate extends Property {
     }
 
     
-    
-    public void addHouse() {
+    public void buyHouse() {
         if (houseCount < 5) {
             houseCount++;
+            // this.transact()
         } else {
             System.out.println("Max houses reached");
         }
