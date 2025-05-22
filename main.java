@@ -81,8 +81,19 @@ public class main{
                     System.out.println(currentProperty);
                     System.out.println("You have to pay " + currentTax.getTaxAmount() + " in taxes.");
                     player.transact(( - currentTax.getTaxAmount()));
-                } else {
-                    System.out.println("This property is not available for purchase.");
+                }  else if(player.getPosition() == 30) {                    // if go to jail
+                    System.out.println("You have been sent to jail.");
+                    player.setPosition(10);
+                } else if(player.getPosition() == 2 || player.getPosition() == 17 || player.getPosition() == 33) {      // if chance
+                    System.out.println("You have drawn a chance card.");
+                    ChanceCard chanceCard = board.drawChanceCard();
+                    System.out.println(chanceCard);
+                    chanceCard.applyEffect(player);
+                } else if(player.getPosition() == 7 || player.getPosition() == 22 || player.getPosition() == 36) {      // if community chest
+                    System.out.println("You have drawn a community chest card.");
+                    CommunityChest communityChest = board.drawCommunityChestCard();
+                    System.out.println(communityChest);
+                    communityChest.applyEffect(player);
                 }
             
 

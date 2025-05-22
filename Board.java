@@ -1,9 +1,10 @@
 public class Board {
     private Property[] board = new Property[40];
+    private ChanceCard[] chanceCards = new ChanceCard[12];
+    private CommunityChest[] communityChests = new CommunityChest[16];
 
     public Board() {
         initBoard();
-       
     }
     
     private void initBoard() {
@@ -47,10 +48,60 @@ public class Board {
         board[37] = new RealEstate("Park Place", 350, new int[]{35, 175, 500, 1100, 1300, 1500}, 175);
         board[38] = new Tax("Luxury Tax", 100);
         board[39] = new RealEstate("Boardwalk", 400, new int[]{50, 200, 600, 1400, 1700, 2000}, 200);
+
+        // initialize chance cards
+        
+        // move to 
+        chanceCards[0] = new ChanceCard("Advance to Go (Collect $200)", "moveTo", 0);
+        chanceCards[1] = new ChanceCard("Advance to Illinois Avenue.", "moveTo", 24);
+        chanceCards[2] = new ChanceCard("Advance to St. Charles Place", "moveTo", 11);
+        chanceCards[6] = new ChanceCard("Take a trip to Reading Railroad", "moveTo", 5);
+        chanceCards[7] = new ChanceCard("Take a walk on the Boardwalk", "moveTo", 39);
+        // go to jail
+        chanceCards[12] = new ChanceCard("Go to Jail - Go directly to jail - Do not pass Go, do not collect $200", "moveTo", 10);
+        // advance to nearest
+        chanceCards[3] = new ChanceCard("Advance to the nearest Utility", "advance to nearest", 12); // 12 = Electric Co. (or use 28 for Water Works)
+        chanceCards[4] = new ChanceCard("Advance to the nearest Railroad", "advance to nearest RAILROAD"); // 5 = Reading Railroad
+        chanceCards[5] = new ChanceCard("Advance to the nearest Railroad", "advance to nearest RAILROAD"); // duplicate
+        // pay or collect
+        chanceCards[8] = new ChanceCard("Bank pays you dividend of $50", "payment", 50);
+        chanceCards[9] = new ChanceCard("Pay poor tax of $15", "payment", - 15);
+        chanceCards[10] = new ChanceCard("Your building and loan matures - Collect $150", "payment", 150);
+        chanceCards[11] = new ChanceCard("You have been elected Chairman - Pay the board $50", "payment", -50);
+
+        // init community chests cards
+        communityChests[0] = new CommunityChest("Advance to Go (Collect $200)", "moveTo", 0);
+        communityChests[1] = new CommunityChest("Bank error in your favor - Collect $200", "payment", 200);
+        communityChests[2] = new CommunityChest("Doctor's fees - Pay $50", "payment", -50);
+        communityChests[3] = new CommunityChest("From sale of stock you get $50", "payment", 50);
+        communityChests[4] = new CommunityChest("Go to Jail - Go directly to jail, do not pass Go, do not collect $200", "moveTo", 10); 
+        communityChests[5] = new CommunityChest("Grand Opera Night - pay 50$ for opening night seats", "payment", -50); 
+        communityChests[6] = new CommunityChest("Holiday Fund matures - Receive $100", "payment", 100);
+        communityChests[7] = new CommunityChest("Income tax refund - Collect $20", "payment", 20);
+        communityChests[8] = new CommunityChest("It is your birthday - Collect $20 from ", "payment", 20); 
+        communityChests[9] = new CommunityChest("Life insurance matures - Collect $100", "payment", 100);
+        communityChests[10] = new CommunityChest("Pay hospital fees of $100", "payment", -100);
+        communityChests[11] = new CommunityChest("Pay school fees of $150", "payment", -150);
+        communityChests[12] = new CommunityChest("Receive $25 consultancy fee", "payment", 25);
+        communityChests[14] = new CommunityChest("You have won second prize in a beauty contest - Collect $10", "payment", 10);
+        communityChests[15] = new CommunityChest("You inherit $100", "payment", 100);
+
     }
+
+    
 
     public Property getProperty(int index) {
         return board[index];
     }
     
+
+    public ChanceCard drawChanceCard() {
+        int randomIndex = (int) (Math.random() * chanceCards.length);
+        return chanceCards[randomIndex];
+        
+    }
+    public CommunityChest drawCommunityChestCard() {
+        int randomIndex = (int) (Math.random() * communityChests.length);
+        return communityChests[randomIndex];
+    }
 }
