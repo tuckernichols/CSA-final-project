@@ -28,7 +28,7 @@ public abstract class Card {
 
     public void applyEffect(Player player) {
         if(type.equals("payment")) {
-            player.addScore(amount);
+            player.transact(amount);
         } else if(type.equals("moveTo")) {
             player.setPosition(amount);
         } else if(type.equals("advance to nearest RAILROAD")) {
