@@ -21,7 +21,6 @@ public class Player {
         // Check if the player has passed "Go"
         if (position >= 40) {
             position -= 40; // Assuming the board has 40 spaces
-            addScore(200); // Collect $200 for passing "Go"
         }
         return total;  // return for if landed on utility
     }
@@ -32,24 +31,15 @@ public class Player {
     public String getName() {
         return name;
     }
+    
+    public boolean isBankrupt() {  // if player is elimnated
+        return money <= 0;
+    }
 
     public int getMoney() {
         return money;
     }
-    public void printPrerollData(String data) {
-        if(data.contains("properties")){
-            System.out.println("Properties: ");
-            for (Property property : properties) {
-                System.out.println(property.getName());
-            }
-        } else if(data.contains("money")){
-            System.out.println("Money: " + money);
-        } else if(data.contains("position")){
-            System.out.println("Position: " + position);
-        } else {
-            System.out.println("Invalid data requested.");
-        }
-    }
+    
 
     public void buyProperty(Property property) {
         if (property.isAvailable()) {
@@ -68,7 +58,6 @@ public class Player {
         this.money += amount;
     }
 
-    
     public void pay(int amount, Player otherPlayer) {
         this.money -= amount;
         otherPlayer.money += amount;
@@ -79,6 +68,7 @@ public class Player {
     public ArrayList<Property> getProperties() {
         return properties;
     }  
+    
     public void setPosition(int position) {
         this.position = position;
     }

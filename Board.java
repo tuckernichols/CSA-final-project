@@ -1,6 +1,6 @@
 public class Board {
     private Property[] board = new Property[40];
-    private ChanceCard[] chanceCards = new ChanceCard[12];
+    private ChanceCard[] chanceCards = new ChanceCard[13];
     private CommunityChest[] communityChests = new CommunityChest[16];
 
     public Board() {
@@ -20,7 +20,7 @@ public class Board {
         board[9] = new RealEstate("Connecticut Avenue", 120, new int[]{8, 40, 100, 300, 450, 600}, 60);
         board[10] = new Property("Jail", 0, false);
         board[11] = new RealEstate("St. Charles Place", 140, new int[]{10, 50, 150, 450, 625, 750}, 70);
-        board[12] = new Property("Electric Company", 150, true);
+        board[12] = new Utility("Electric Company");
         board[13] = new RealEstate("States Avenue", 140, new int[]{10, 50, 150, 450, 625, 750}, 70);
         board[14] = new RealEstate("Virginia Avenue", 160, new int[]{12, 60, 180, 500, 700, 900}, 80);
         board[15] = new RailRoad("Pennsylvania Railroad");
@@ -36,7 +36,7 @@ public class Board {
         board[25] = new RailRoad("B&O Railroad");
         board[26] = new RealEstate("Atlantic Avenue", 260, new int[]{22, 110, 330, 800, 975, 1150}, 130);
         board[27] = new RealEstate("Ventnor Avenue", 260, new int[]{22, 110, 330, 800, 975, 1150}, 130);
-        board[28] = new Property("Water Works", 150, true);
+        board[28] = new Utility("Water Works");
         board[29] = new RealEstate("Marvin Gardens", 280, new int[]{24, 120, 360, 850, 1025, 1200}, 140);
         board[30] = new Property("Go to Jail", 0, false);
         board[31] = new RealEstate("Pacific Avenue", 300, new int[]{26, 130, 390, 900, 1100, 1275}, 150);    
