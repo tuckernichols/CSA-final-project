@@ -15,5 +15,6 @@ public class GameManager {
                 System.out.println(player.getName() + " - Money: " + player.getMoney() + ", Position: " + player.getPosition());
             }
         }
+        System.out.println("");
     }
 }
