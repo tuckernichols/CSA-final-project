@@ -7,7 +7,7 @@ public class PlayerAI extends Player {
 
     private void decideStrategy() {
         // Simple strategy decision based on the player's current money
-        if (getMoney() > 1500) {
+        if (getMoney() > 600) {
             isAggressive = true; // Aggressive if money is above a certain threshold
         } else {
             isAggressive = false; // Conservative otherwise
@@ -38,7 +38,7 @@ public class PlayerAI extends Player {
             if (property instanceof RealEstate) {
                 RealEstate realEstate = (RealEstate) property;
                 // Conservative AI buys if the property is cheap or strategically valuable
-                return getMoney() > realEstate.getValue() * 0.75 && realEstate.getRent() > 50;
+                return getMoney() > realEstate.getValue() * 0.75 && realEstate.getRent() > 12;
             }
             // Conservative AI avoids Railroads and Utilities unless it has a lot of money
             if ((property instanceof RailRoad || property instanceof Utility) && getMoney() > 1000) {

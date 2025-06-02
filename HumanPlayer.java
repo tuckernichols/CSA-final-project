@@ -4,6 +4,4 @@ public class HumanPlayer extends Player {
         super(name);
     }
 
-    
-
 }

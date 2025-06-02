@@ -1,6 +1,7 @@
+import java.util.ArrayList;
 public class GameManager {
 
-    public void printPrerollData(Player currentPlayer, Player[] players) {
+    public void printPrerollData(Player currentPlayer, ArrayList<Player> players) {
         System.out.println("Current Player: " + currentPlayer.getName());
         System.out.print("Money: " + currentPlayer.getMoney() + ", ");
         System.out.println("Position: " + currentPlayer.getPosition());

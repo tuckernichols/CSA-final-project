@@ -11,14 +11,13 @@ public class Main{
         GameManager gameManager = new GameManager();
         Scanner scanner = new Scanner(System.in);  
 
-        Player[] Players = new Player[]{new HumanPlayer("Tucker Nichols"), new PlayerAI("Bob"), new PlayerAI("stupid guy")};
+        ArrayList<Player> Players = new ArrayList<Player>(); 
+        Players.add(new HumanPlayer("Tucker Nichols"));
+        Players.add(new PlayerAI("Bob"));
+        Players.add(new PlayerAI("stupid guy"));
 
         System.out.println("\n Welcome to Monopoly!");
         System.out.println("- - - - - - - - - - - -");
-
-        
-
-        
 
         while(gameRunning){
             for(Player currentPlayer : Players) {
@@ -41,7 +40,7 @@ public class Main{
                 System.out.println("Current Property: " + currentProperty.getName());
 
                    // paying rent
-                if(currentProperty.getOwner() != currentPlayer && !currentProperty.isAvailable()) { // if property is not available and not owned by current player
+                if(currentProperty.getOwner() != currentPlayer && !currentProperty.isAvailable() && ! (currentProperty instanceof Property)) { // if property is not available and not owned by current player
                     if(currentProperty instanceof RealEstate) {
                         RealEstate currentRealEstate = (RealEstate) currentProperty;
                         System.out.println("This property is owned by " + currentRealEstate.getOwner().getName());
@@ -77,22 +76,22 @@ public class Main{
                     }
                 } else if(currentProperty instanceof Tax) {                // if tax
                     Tax currentTax = (Tax) currentProperty;
-                    System.out.println("You have to pay " + currentTax.getTaxAmount() + "$ in taxes.");
+                    System.out.println(currentPlayer.getName() + " paid " + currentTax.getTaxAmount() + "$ in taxes.");
                     currentPlayer.transact(( - currentTax.getTaxAmount()));  
                 }  
                 else if(currentPlayer.getPosition() == 30) {                    // if go to jail
-                    System.out.println("You have been sent to jail.");
+                    System.out.println(currentPlayer.getName() + "has been sent to jail.");
                     currentPlayer.setPosition(10);
                 }                                                               // if chance card
                 else if(currentPlayer.getPosition() == 7 || currentPlayer.getPosition() == 22 || currentPlayer.getPosition() == 36) {      
                     ChanceCard chanceCard = board.drawChanceCard();
-                    System.out.println("You have drawn a chance card - " + chanceCard.getDescription());
+                    System.out.println(currentPlayer.getName() + " has drawn a chance card - " + chanceCard.getDescription());
                     chanceCard.applyEffect(currentPlayer);
                                                                         // if community chest
                 } 
                 else if(currentPlayer.getPosition() == 2 || currentPlayer.getPosition() == 17 || currentPlayer.getPosition() == 33) {     
                     CommunityChest communityChest = board.drawCommunityChestCard();
-                    System.out.println("You have drawn a community chest card - " + communityChest.getDescription());
+                    System.out.println(currentPlayer.getName() + "has drawn a community chest card - " + communityChest.getDescription());
                     communityChest.applyEffect(currentPlayer);
                 }
                 System.out.println("- - - - - - - - - - - -");
