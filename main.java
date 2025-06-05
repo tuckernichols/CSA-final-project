@@ -15,7 +15,8 @@ public class Main{
         Players.add(new HumanPlayer("Tucker Nichols"));
         Players.add(new PlayerAI("Bob"));
         Players.add(new PlayerAI("stupid guy"));
-
+        
+        System.out.println("- - - - - - - - - - - -");
         System.out.println("\n Welcome to Monopoly!");
         System.out.println("- - - - - - - - - - - -");
 
